@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminkalender</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+</head>
+<body>
+<div class="container">
+    <h1>Willkommen zum Terminkalender</h1>
+    <a href="/create">Reservation erfassen</a>
+    <br><br>
+    <a href="/list">Alle Reservationen anzeigen</a>
+    <br><br>
+    <form th:action="@{/check-key}" method="post">
+        <label for="key">Schlüssel eingeben:</label>
+        <input type="text" id="key" name="key" th:value="${key}">
+        <button type="submit">Prüfen</button>
+        <p th:if="${error}" style="color: red;" th:text="${error}"></p>
+        <p th:if="${message}" style="color: rgb(27, 32, 121);" th:text="${message}"></p>
+    </form>
+</div>
+</body>
+</html>

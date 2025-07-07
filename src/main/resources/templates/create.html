@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation erstellen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Reservation erfassen</h1>
+<form th:action="@{/create}" method="post">
+    <label for="date">Datum:</label>
+    <input type="date" id="date" name="date" required>
+    <br>
+    <label for="startTime">Von:</label>
+    <input type="time" id="startTime" name="startTime" required>
+    <br>
+    <label for="endTime">Bis:</label>
+    <input type="time" id="endTime" name="endTime" required>
+    <br>
+    <label for="room">Zimmer:</label>
+    <select id="room" name="room" required>
+        <option th:each="room : ${rooms}" th:value="${room}" th:text="${room}"></option>
+    </select>
+    <br>
+    <label for="comment">Bemerkung:</label>
+    <textarea id="comment" name="comment" required></textarea>
+    <br>
+    <label for="participants">Teilnehmer (Vorname Nachname, getrennt durch Komma):</label>
+    <input type="text" id="participants" name="participants" required>
+    <br>
+    <button type="submit">Reservation speichern</button>
+    <p th:if="${error}" style="color: red;" th:text="${error}"></p>
+</form>
+<a href="/">Zurück</a>
+</body>
+</html>
