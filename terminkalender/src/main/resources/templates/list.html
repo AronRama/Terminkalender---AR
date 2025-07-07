@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alle Reservationen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Alle Reservationen</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Datum</th>
+        <th>Von</th>
+        <th>Bis</th>
+        <th>Zimmer</th>
+        <th>Bemerkung</th>
+        <th>Teilnehmer</th>
+        <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.date}"></td>
+        <td th:text="${reservation.startTime}"></td>
+        <td th:text="${reservation.endTime}"></td>
+        <td th:text="${reservation.room}"></td>
+        <td th:text="${reservation.comment}"></td>
+        <td>
+            <ul>
+                <li th:each="p : ${reservation.participants}"
+                    th:text="${p.firstName + ' ' + p.lastName}"></li>
+            </ul>
+        </td>
+        <td>
+            <form th:action="@{/delete/{id}(id=${reservation.id})}" method="post"
+                  onsubmit="return confirm('Willst du diese Reservation wirklich löschen?');">
+                <button type="submit">Löschen</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/">Zurück</a>
+</body>
+</html>

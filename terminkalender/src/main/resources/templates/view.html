@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation ansehen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container details-container">
+    <h1 class="title">Reservation Details</h1>
+
+    <div class="details-grid">
+        <p><strong>Datum:</strong> <span th:text="${reservation.date}"></span></p>
+        <p><strong>Von:</strong> <span th:text="${reservation.startTime}"></span></p>
+        <p><strong>Bis:</strong> <span th:text="${reservation.endTime}"></span></p>
+        <p><strong>Zimmer:</strong> <span th:text="${reservation.room}"></span></p>
+        <p><strong>Bemerkung:</strong> <span th:text="${reservation.comment}"></span></p>
+    </div>
+
+    <div class="participants">
+        <h2>Teilnehmer</h2>
+        <ul>
+            <li th:each="participant : ${reservation.participants}"
+                th:text="${participant.firstName} + ' ' + ${participant.lastName}"></li>
+        </ul>
+    </div>
+
+    <div class="back-button">
+        <a href="/" class="button">Zurück</a>
+    </div>
+</div>
+</body>
+</html>

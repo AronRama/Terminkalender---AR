@@ -1,0 +1,8 @@
+ch\example\terminkalender\TerminkalenderApplication.class
+ch\example\terminkalender\model\Reservation.class
+ch\example\terminkalender\controller\ReservationController.class
+ch\example\terminkalender\model\Participant.class
+ch\example\terminkalender\DataInitializer.class
+ch\example\terminkalender\HomeController.class
+ch\example\terminkalender\controller\AuthController.class
+ch\example\terminkalender\repository\ReservationRepository.class

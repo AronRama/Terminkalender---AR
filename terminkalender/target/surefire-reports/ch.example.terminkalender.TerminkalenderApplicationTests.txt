@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ch.example.terminkalender.TerminkalenderApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.991 s -- in ch.example.terminkalender.TerminkalenderApplicationTests

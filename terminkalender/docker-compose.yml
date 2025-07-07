@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: terminkalender-app
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/terminkalender
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwort
+    networks:
+      - app-net
+
+  db:
+    image: mysql:5.7
+    container_name: mysql_container
+    environment:
+      MYSQL_DATABASE: terminkalender
+      MYSQL_ROOT_PASSWORD: passwort
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: passwort
+    depends_on:
+      - db
+    networks:
+      - app-net
+
+networks:
+  app-net:

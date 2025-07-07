@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation bearbeiten</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Reservation bearbeiten</h1>
+<form th:action="@{/edit/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
+    <label for="date">Datum:</label>
+    <input type="date" id="date" th:field="*{date}" required>
+    <br>
+    <label for="startTime">Von:</label>
+    <input type="time" id="startTime" th:field="*{startTime}" required>
+    <br>
+    <label for="endTime">Bis:</label>
+    <input type="time" id="endTime" th:field="*{endTime}" required>
+    <br>
+    <label for="room">Zimmer:</label>
+    <select id="room" th:field="*{room}" required>
+        <option th:each="room : ${rooms}" th:value="${room}" th:text="${room}"></option>
+    </select>
+    <br>
+    <label for="comment">Bemerkung:</label>
+    <textarea id="comment" th:field="*{comment}" required></textarea>
+    <br>
+    <label for="participants">Teilnehmer (Vorname Nachname, getrennt durch Komma):</label>
+    <input type="text" id="participants" name="participants" th:value="${reservation.participants.stream().map(p -> p.firstName + ' ' + p.lastName).collect(Collectors.joining(', '))}" required>
+    <br>
+    <button type="submit">Änderungen speichern</button>
+</form>
+<form th:action="@{/delete/{id}(id=${reservation.id})}" method="post">
+    <button type="submit">Reservation löschen</button>
+</form>
+<a href="/">Zurück</a>
+</body>
+</html>
